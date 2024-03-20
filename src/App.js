@@ -10,56 +10,71 @@ import InvoiceDetailsPage from "./components/invoice-details/InvoiceDetailsPage"
 import OrderSuccessPage from "./components/order-success/OrderSuccessPage";
 import ProductDetailsPage from "./components/product-details/ProductDetailsPage";
 import { routeProtection } from "./utils/utils";
+import Root from "./components/Root";
+import AuthRoot from "./components/AuthRoot";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />,
+    element: <Root />,
     errorElement: <ErrorPage />,
-  },
-  {
-    path: "signup",
-    element: <SignupPage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "signin",
-    element: <SigninPage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "products/:productId",
-    element: <ProductDetailsPage />,
-    errorElement: <HomePage />,
-  },
-  {
-    path: "cart",
-    element: <CartPage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "checkout",
-    element: <CheckoutPage />,
-    loader: routeProtection,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "invoices",
-    element: <InvoicesPage />,
-    loader: routeProtection,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "invoice/:invoiceId",
-    element: <InvoiceDetailsPage />,
-    loader: routeProtection,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "orders/:orderId",
-    element: <OrderSuccessPage />,
-    loader: routeProtection,
-    errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        element: <HomePage />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "auth",
+        element: <AuthRoot />,
+        children: [
+          {
+            path: "signup",
+            element: <SignupPage />,
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: "signin",
+            element: <SigninPage />,
+            errorElement: <ErrorPage />,
+          },
+        ],
+      },
+      {
+        path: "products/:productId",
+        element: <ProductDetailsPage />,
+        errorElement: <HomePage />,
+      },
+      {
+        path: "cart",
+        element: <CartPage />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "checkout",
+        element: <CheckoutPage />,
+        loader: routeProtection,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "invoices",
+        element: <InvoicesPage />,
+        loader: routeProtection,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "invoice/:invoiceId",
+        element: <InvoiceDetailsPage />,
+        loader: routeProtection,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "orders/:orderId",
+        element: <OrderSuccessPage />,
+        loader: routeProtection,
+        errorElement: <ErrorPage />,
+      },
+    ],
   },
 ]);
 

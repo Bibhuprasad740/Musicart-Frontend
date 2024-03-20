@@ -1,0 +1,15 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.main {
+  height: 94vh;
+}
+
+@media (max-width: 600px) {
+  .main {
+    height: 95vh;
+  }
+}

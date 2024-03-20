@@ -1,3 +1,123 @@
 .signupPage {
-  color: red;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 92vh;
+}
+
+.container {
+  width: 30vw;
+  margin-bottom: 2rem;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+}
+
+.image {
+  width: 10vw;
+  height: auto;
+}
+
+.formSection {
+  padding: 2rem;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+}
+
+.formHeading {
+  font-size: 2rem;
+}
+
+.inputTitle {
+  font-size: 1.2rem;
+}
+
+.inputArea {
+  margin: 1rem 0;
+}
+
+.inputBox {
+  padding: 0 10px;
+  margin: 5px 0;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  width: 100%;
+}
+
+.userInput {
+  border: none;
+  padding: 10px;
+  font-size: 1rem;
+  width: 100%;
+  outline: none;
+}
+
+.invalid {
+  border: 1px solid var(--error-color);
+}
+.error {
+  color: var(--error-color);
+}
+
+.redirectionSection {
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.redirectButton {
+  margin: 0 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.readme {
+  margin-bottom: 10px;
+}
+
+/* Tablet view */
+@media (max-width: 1100px) {
+  .container {
+    width: 50vw;
+  }
+  .image {
+    width: 15vw;
+  }
+}
+
+/* Mobile view */
+@media (max-width: 600px) {
+  .container {
+    width: 95vw;
+  }
+  .formSection {
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+  .imageContainer {
+    display: none;
+  }
+  .inputArea {
+    margin: 0.5rem 0;
+  }
+  .inputTitle {
+    font-size: 1rem;
+  }
+}
+
+@media (max-height: 700px) and (min-width: 600px) {
+  .formSection {
+    padding: 1rem;
+  }
+  .container {
+    width: 40vw;
+  }
+  .inputArea {
+    margin: 1rem 0;
+  }
 }

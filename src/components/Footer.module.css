@@ -1,0 +1,19 @@
+.footer {
+  background-color: var(--primary-color);
+  height: 6vh;
+  width: 100%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footerText {
+  font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  .footer {
+    height: 5vh;
+  }
+}
