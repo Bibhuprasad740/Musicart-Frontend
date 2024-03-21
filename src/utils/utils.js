@@ -1,15 +1,15 @@
 import { redirect } from "react-router-dom";
 
 export const getAuthTokenFromLocalStorage = () => {
-  const user = localStorage.getItem("auth")
+  const auth = localStorage.getItem("auth")
     ? JSON.parse(localStorage.getItem("auth"))
     : null;
 
-  if (!user) {
+  if (!auth) {
     return null;
   }
 
-  return user.token;
+  return auth.token;
 };
 
 export const routeProtection = () => {

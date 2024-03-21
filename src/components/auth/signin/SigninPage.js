@@ -6,6 +6,8 @@ import SubmitButton from "../../reusables/SubmitButton";
 import RedirectButton from "../../reusables/RedirectButton";
 import { NavLink } from "react-router-dom";
 import useInput from "../../hooks/use-input";
+import { signin } from "../../../store/authSlice";
+import { useDispatch } from "react-redux";
 
 const validateEmail = (email) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -16,6 +18,8 @@ const validatePassword = (password) => {
 };
 
 const SigninPage = () => {
+  const dispatch = useDispatch();
+
   // email input state
   const {
     value: emailInputValue,
@@ -49,7 +53,7 @@ const SigninPage = () => {
     }
 
     // do something with the data
-    console.log(emailInputValue, passwordInputValue);
+    dispatch(signin(emailInputValue, passwordInputValue));
 
     // reset the input
     resetEmail();

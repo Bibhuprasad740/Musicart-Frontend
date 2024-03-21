@@ -5,6 +5,8 @@ import logo from "../../../assets/logo.png";
 import SubmitButton from "../../reusables/SubmitButton";
 import { NavLink } from "react-router-dom";
 import useInput from "../../hooks/use-input";
+import { useDispatch } from "react-redux";
+import { signup } from "../../../store/authSlice";
 
 const validateName = (name) => {
   return name.trim().length > 0;
@@ -21,6 +23,8 @@ const validatePassword = (password) => {
 };
 
 const SignupPage = () => {
+  const dispatch = useDispatch();
+
   // name input state
   const {
     value: nameInputValue,
@@ -74,11 +78,13 @@ const SignupPage = () => {
     }
 
     // do something with the data
-    console.log(
-      nameInputValue,
-      phoneInputValue,
-      emailInputValue,
-      passwordInputValue
+    dispatch(
+      signup(
+        nameInputValue,
+        phoneInputValue,
+        emailInputValue,
+        passwordInputValue
+      )
     );
 
     // reset the input
