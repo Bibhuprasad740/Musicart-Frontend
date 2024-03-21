@@ -9,7 +9,7 @@ import InvoicesPage from "./components/invoices/InvoicesPage";
 import InvoiceDetailsPage from "./components/invoice-details/InvoiceDetailsPage";
 import OrderSuccessPage from "./components/order-success/OrderSuccessPage";
 import ProductDetailsPage from "./components/product-details/ProductDetailsPage";
-import { routeProtection } from "./utils/utils";
+import { authProtection, routeProtection } from "./utils/utils";
 import Root from "./components/Root";
 import AuthRoot from "./components/AuthRoot";
 
@@ -31,11 +31,13 @@ const router = createBrowserRouter([
           {
             path: "signup",
             element: <SignupPage />,
+            loader: authProtection,
             errorElement: <ErrorPage />,
           },
           {
             path: "signin",
             element: <SigninPage />,
+            loader: authProtection,
             errorElement: <ErrorPage />,
           },
         ],

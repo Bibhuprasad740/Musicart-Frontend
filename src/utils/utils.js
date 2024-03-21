@@ -20,3 +20,12 @@ export const routeProtection = () => {
 
   return null;
 };
+
+export const authProtection = () => {
+  const token = getAuthTokenFromLocalStorage();
+  if (token) {
+    return redirect("/");
+  }
+
+  return null;
+};
