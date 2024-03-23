@@ -1,12 +1,17 @@
 .signinPage {
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  height: 92vh;
+  height: 100%;
+}
+
+.mobile {
+  display: none;
 }
 
 .container {
-  width: 30vw;
+  width: 40vw;
 }
 
 .imageContainer {
@@ -109,8 +114,15 @@
   .inputTitle {
     font-size: 1rem;
   }
+  .desktop {
+    display: none;
+  }
+  .mobile {
+    display: block;
+  }
 }
 
+/* small height laptops */
 @media (max-height: 700px) and (min-width: 600px) {
   .formSection {
     padding: 1rem;
@@ -120,5 +132,8 @@
   }
   .inputArea {
     margin: 1rem 0;
+  }
+  .desktop {
+    display: block;
   }
 }

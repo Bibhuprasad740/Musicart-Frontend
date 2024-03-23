@@ -1,12 +1,12 @@
 import React from "react";
-import Header from "./Header";
+import MobileHeader from "./MobileHeader";
 import { Outlet } from "react-router-dom";
 import classes from "./AuthRoot.module.css";
 
 const AuthRoot = () => {
   return (
     <div className={classes.authRoot}>
-      <Header />
+      <MobileHeader />
       <div className={classes.main}>
         <Outlet />
       </div>

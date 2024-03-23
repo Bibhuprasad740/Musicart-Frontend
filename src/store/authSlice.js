@@ -27,6 +27,11 @@ const authSlice = createSlice({
     setMessage(state, action) {
       state.message = action.payload;
     },
+    logout(state) {
+      localStorage.removeItem("auth");
+      state.token = null;
+      state.user = null;
+    },
   },
 });
 

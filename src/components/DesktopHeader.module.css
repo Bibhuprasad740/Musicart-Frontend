@@ -1,0 +1,22 @@
+.desktopHeader,
+.logoSection,
+.authButtons {
+  display: flex;
+  align-items: center;
+}
+
+.desktopHeader {
+  justify-content: space-between;
+  background-color: var(--primary-color);
+  height: 8vh;
+  width: 100vw;
+  padding: 1rem;
+}
+
+.text {
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-left: 10px;
+}

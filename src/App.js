@@ -11,7 +11,6 @@ import OrderSuccessPage from "./components/order-success/OrderSuccessPage";
 import ProductDetailsPage from "./components/product-details/ProductDetailsPage";
 import { authProtection, routeProtection } from "./utils/utils";
 import Root from "./components/Root";
-import AuthRoot from "./components/AuthRoot";
 
 const router = createBrowserRouter([
   {
@@ -25,22 +24,16 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />,
       },
       {
-        path: "auth",
-        element: <AuthRoot />,
-        children: [
-          {
-            path: "signup",
-            element: <SignupPage />,
-            loader: authProtection,
-            errorElement: <ErrorPage />,
-          },
-          {
-            path: "signin",
-            element: <SigninPage />,
-            loader: authProtection,
-            errorElement: <ErrorPage />,
-          },
-        ],
+        path: "signup",
+        element: <SignupPage />,
+        loader: authProtection,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "signin",
+        element: <SigninPage />,
+        loader: authProtection,
+        errorElement: <ErrorPage />,
       },
       {
         path: "products/:productId",

@@ -2,14 +2,22 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100%;
+  /* background-color: red; */
 }
 
 .main {
-  height: 94vh;
+  min-height: 94vh;
 }
 
 @media (max-width: 600px) {
   .main {
-    height: 95vh;
+    min-height: 95vh;
+  }
+}
+
+@media (min-width: 600px) {
+  .mobile {
+    display: none;
   }
 }

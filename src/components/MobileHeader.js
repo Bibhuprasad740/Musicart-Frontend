@@ -1,15 +1,15 @@
 import React from "react";
-import classes from "./Header.module.css";
+import classes from "./MobileHeader.module.css";
 
 import logo from "../assets/logo_only.png";
 
-const Header = () => {
+const MobileHeader = () => {
   return (
-    <header className={classes.header}>
+    <header className={classes.mobileHeader}>
       <img className={classes.image} src={logo} alt="logo.png" />
       <p className={classes.title}>Musicart</p>
     </header>
   );
 };
 
-export default Header;
+export default MobileHeader;

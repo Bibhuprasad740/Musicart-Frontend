@@ -8,6 +8,8 @@ import { NavLink } from "react-router-dom";
 import useInput from "../../hooks/use-input";
 import { signin } from "../../../store/authSlice";
 import { useDispatch } from "react-redux";
+import MobileHeader from "../../MobileHeader";
+import DesktopHeader from "../../DesktopHeader";
 
 const validateEmail = (email) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -61,7 +63,16 @@ const SigninPage = () => {
   };
   return (
     <div className={classes.signinPage}>
-      {/* <Footer /> */}
+      {/* Header */}
+      <section className={classes.headerSection}>
+        <div className={classes.mobile}>
+          <MobileHeader />
+        </div>
+        <div className={classes.desktop}>
+          <DesktopHeader />
+        </div>
+      </section>
+
       <div className={classes.container}>
         {/* logo */}
         <div className={classes.imageContainer}>
@@ -134,7 +145,7 @@ const SigninPage = () => {
         </div>
 
         {/* redirect button */}
-        <NavLink to="/auth/signup">
+        <NavLink to="/signup">
           <RedirectButton title="Create Your Musicart Account" />
         </NavLink>
       </div>

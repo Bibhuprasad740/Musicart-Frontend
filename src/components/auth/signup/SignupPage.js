@@ -7,6 +7,8 @@ import { NavLink } from "react-router-dom";
 import useInput from "../../hooks/use-input";
 import { useDispatch } from "react-redux";
 import { signup } from "../../../store/authSlice";
+import MobileHeader from "../../MobileHeader";
+import DesktopHeader from "../../DesktopHeader";
 
 const validateName = (name) => {
   return name.trim().length > 0;
@@ -95,6 +97,14 @@ const SignupPage = () => {
   };
   return (
     <div className={classes.signupPage}>
+      <section className={classes.headerSection}>
+        <div className={classes.mobile}>
+          <MobileHeader />
+        </div>
+        <div className={classes.desktop}>
+          <DesktopHeader />
+        </div>
+      </section>
       {/* <Footer /> */}
       <div className={classes.container}>
         {/* logo */}
@@ -213,7 +223,7 @@ const SignupPage = () => {
         </form>
         <div className={classes.redirectionSection}>
           <p className={classes.redirectText}>Already have account? </p>
-          <NavLink to="/auth/signin">
+          <NavLink to="/signin">
             <p className={classes.redirectButton}>Login</p>
           </NavLink>
         </div>
