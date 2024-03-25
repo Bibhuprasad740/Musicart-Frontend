@@ -33,7 +33,7 @@ const DesktopHeader = () => {
             </NavLink>
           </div>
         )}
-        {token && (
+        {token && pathname !== "/" && (
           <NavLink to="/">
             <p onClick={logoutHandler} className={classes.text}>
               Logout

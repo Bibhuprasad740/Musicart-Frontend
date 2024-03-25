@@ -1,0 +1,120 @@
+.productGrid {
+  width: calc(25% - 2rem);
+  margin-bottom: 10px;
+  position: relative;
+  cursor: pointer;
+}
+
+.productList {
+  display: flex;
+  margin: 2rem 0;
+}
+
+.imageSection {
+  padding: 2rem;
+  background-color: #d4e5ff;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageSection:hover {
+  box-shadow: 2px 2px 10px rgb(212, 212, 212);
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.imageList {
+  width: 15vw;
+  height: 15vw;
+  object-fit: cover;
+}
+
+.imageSection img:hover {
+  transform: scale(1.1);
+}
+
+.cartIcon {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cartIcon:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.productDetails,
+.productDetailsList {
+  padding: 10px;
+}
+
+.productDetailsList {
+  width: 70vw;
+}
+
+.productName,
+.productBrand,
+.productPrice {
+  font-size: 1.5rem;
+  line-height: 1.4;
+  font-weight: bold;
+  overflow: hidden;
+}
+
+.productDescription {
+  height: 5vh;
+  font-size: 1.5rem;
+  overflow: hidden;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .productGrid {
+    width: calc(33.33% - 2rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .productGrid {
+    width: calc(50% - 2rem);
+  }
+  .productName,
+  .productBrand,
+  .productPrice {
+    font-size: 1.2rem;
+  }
+  .productDescription {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .productGrid {
+    width: calc(50% - 2rem);
+  }
+  .productName,
+  .productBrand,
+  .productPrice {
+    font-size: 1rem;
+  }
+  .productDescription {
+    font-size: 1rem;
+  }
+}

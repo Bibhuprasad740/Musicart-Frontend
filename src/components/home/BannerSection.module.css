@@ -1,0 +1,57 @@
+.bannerSection {
+  margin: 7vh 0;
+  position: relative;
+  background: linear-gradient(90deg, #7286b4 0%, #e794ce 100%);
+  height: 40vh;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ad {
+  margin-left: 5vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 5px;
+  height: 100%;
+}
+
+.text {
+  font-size: 3vw;
+}
+
+.girl {
+  position: relative;
+  bottom: 20%;
+  height: 120%;
+}
+
+.buyButton {
+  padding: 1vw 3vw;
+  border-radius: 20px;
+  background-color: var(--primary-color);
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .bannerSection {
+    height: 20vh;
+  }
+}
+
+@media (max-width: 576px) {
+  .bannerSection {
+    margin: 2vh 0;
+    height: 15vh;
+  }
+  .text {
+    font-size: 3vw;
+    padding: 10px;
+  }
+  .ad {
+    gap: 0;
+  }
+}
