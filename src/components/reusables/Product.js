@@ -41,6 +41,9 @@ const Product = ({ product, isGridView }) => {
         <p className={classes.name}>{`Earphone Type - ${getHeadphoneType(
           product.type
         )}`}</p>
+        {!isGridView && (
+          <button className={classes.detailsButton}>Details</button>
+        )}
       </div>
     </div>
   );
