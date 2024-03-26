@@ -6,9 +6,44 @@
   display: none;
 }
 
+.productHeading {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.productMain {
+  margin: 1rem 0;
+  display: flex;
+}
+
+.imageSection {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden;
+}
+
+.detailsSection {
+  width: 50%;
+}
+
 @media (max-width: 768px) {
   .mobile {
     display: none;
+  }
+  .main {
+    padding: 1rem 2rem;
+  }
+  .productHeading {
+    font-size: 1.3rem;
+  }
+  .productMain {
+    flex-direction: column;
+  }
+  .imageSection,
+  .detailsSection {
+    width: 100%;
   }
 }
 
@@ -18,5 +53,11 @@
   }
   .mobile {
     display: block;
+  }
+  .main {
+    padding: 1rem;
+  }
+  .productHeading {
+    font-size: 1rem;
   }
 }

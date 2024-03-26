@@ -1,0 +1,29 @@
+.backContainer {
+  background-color: var(--primary-color);
+  padding: 10px 20px;
+  color: white;
+  border-radius: 20px;
+  margin: 1rem 0;
+  display: inline-block;
+}
+
+.backButton {
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.mobileBack {
+  display: none;
+}
+
+@media (max-width: 768px) {
+}
+
+@media (max-width: 576px) {
+  .desktopBack {
+    display: none;
+  }
+  .mobileBack {
+    display: inline-block;
+  }
+}
