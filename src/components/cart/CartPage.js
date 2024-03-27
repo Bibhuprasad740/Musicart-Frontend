@@ -98,7 +98,7 @@ const CartPage = () => {
                   <div className={classes.divider}></div>
 
                   {/* total price */}
-                  <div className={classes.detailsBox}>
+                  <div className={classes.totalBox}>
                     <p className={classes.detailsKey}>Total Price</p>
                     <p className={classes.detailsValue}>
                       {cart.totalPrice + 45}
