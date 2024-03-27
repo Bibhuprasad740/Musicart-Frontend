@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import classes from "./NavigationSection.module.css";
 
 import logo from "../assets/logo.png";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 import { GrCart } from "react-icons/gr";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../store/authSlice";
+import { cartActions } from "../store/cartSlice";
 
 const NavigationSection = () => {
   const auth = useSelector((state) => state.auth);
+  const cartSize = useSelector((state) => state.cart.totalQuantity);
   const dispatch = useDispatch();
   const { pathname } = useLocation();
   const [showOptions, setShowOptions] = useState(false);
@@ -19,7 +21,13 @@ const NavigationSection = () => {
   };
 
   const logoutHandler = () => {
+    dispatch(cartActions.clearCart());
     dispatch(authActions.logout());
+  };
+
+  const navigate = useNavigate();
+  const navigateToCart = () => {
+    navigate("/cart");
   };
 
   const getNameAbbr = (name) => {
@@ -52,10 +60,10 @@ const NavigationSection = () => {
       {/* cart and account */}
       <div className={classes.rightPortion}>
         {/* cart */}
-        <div className={classes.cart}>
+        <div className={classes.cart} onClick={navigateToCart}>
           <GrCart color="white" size={25} />
           <p>View Cart</p>
-          <p>0</p>
+          <p>{cartSize}</p>
         </div>
         {/* Account */}
         {auth.user && (

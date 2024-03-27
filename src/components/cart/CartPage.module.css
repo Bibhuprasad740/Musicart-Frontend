@@ -1,3 +1,56 @@
-.cartPage {
-  color: red;
+.cartHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 2rem 0;
+}
+
+.headerTitle {
+  font-size: 2rem;
+}
+
+.detailsMain {
+  display: flex;
+  /* height: 100vh; */
+}
+
+.productsSection {
+  width: 70%;
+
+  background-color: red;
+}
+
+.priceSection {
+  width: 30%;
+  background-color: green;
+}
+
+.main {
+  padding: 1rem 4rem;
+}
+
+.mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile {
+    display: none;
+  }
+  .main {
+    padding: 1rem 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .desktop {
+    display: none;
+  }
+  .mobile {
+    display: block;
+  }
+  .main {
+    padding: 1rem;
+  }
 }

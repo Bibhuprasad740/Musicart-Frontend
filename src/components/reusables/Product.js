@@ -3,12 +3,11 @@ import classes from "./Product.module.css";
 
 import { FaShoppingCart } from "react-icons/fa";
 import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../../store/cartSlice";
 
 const Product = ({ product, isGridView }) => {
-  const navigate = useNavigate();
-  const navigateToProductDetails = (product) => {
-    navigate(`/products/${product.name}`);
-  };
+  const dispatch = useDispatch();
 
   const getHeadphoneType = (type) => {
     if (type === "inear") {
@@ -20,18 +19,24 @@ const Product = ({ product, isGridView }) => {
     }
   };
 
+  const navigate = useNavigate();
+  const navigateToProductDetaisPage = () => {
+    navigate(`/products/${product._id}`);
+  };
+
+  const addItemToCartHandler = () => {
+    dispatch(cartActions.addItemToCart(product));
+  };
+
   return (
-    <div
-      onClick={navigateToProductDetails}
-      className={isGridView ? classes.productGrid : classes.productList}
-    >
+    <div className={isGridView ? classes.productGrid : classes.productList}>
       <div className={classes.imageSection}>
         <img
           className={isGridView ? classes.image : classes.imageList}
           src={product.imageUrls[0]}
           alt=""
         />
-        <div className={classes.cartIcon}>
+        <div className={classes.cartIcon} onClick={addItemToCartHandler}>
           <FaShoppingCart />
         </div>
       </div>
@@ -41,7 +46,7 @@ const Product = ({ product, isGridView }) => {
         }
       >
         {/* change it to product.id */}
-        <NavLink to={`products/${product.name}`}>
+        <NavLink to={`/products/${product._id}`}>
           <p
             className={classes.productName}
           >{`${product.brand} | ${product.name}`}</p>
@@ -54,7 +59,12 @@ const Product = ({ product, isGridView }) => {
           product.type
         )}`}</p>
         {!isGridView && (
-          <button className={classes.detailsButton}>Details</button>
+          <button
+            className={classes.detailsButton}
+            onClick={navigateToProductDetaisPage}
+          >
+            Details
+          </button>
         )}
       </div>
     </div>

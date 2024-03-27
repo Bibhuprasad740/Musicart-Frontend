@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import phoneIcon from "../assets/phoneIcon.png";
 import { NavLink, useLocation } from "react-router-dom";
 import { authActions } from "../store/authSlice";
+import { cartActions } from "../store/cartSlice";
 
 const DesktopHeader = () => {
   const token = useSelector((state) => state.auth.token);
@@ -12,6 +13,7 @@ const DesktopHeader = () => {
   const { pathname } = useLocation();
 
   const logoutHandler = () => {
+    dispatch(cartActions.clearCart());
     dispatch(authActions.logout());
   };
   return pathname !== "/signup" && pathname !== "/signin" ? (

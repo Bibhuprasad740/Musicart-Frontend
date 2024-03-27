@@ -43,6 +43,7 @@ const router = createBrowserRouter([
       {
         path: "cart",
         element: <CartPage />,
+        loader: routeProtection,
         errorElement: <ErrorPage />,
       },
       {
