@@ -70,11 +70,55 @@ const CartPage = () => {
                   <CartItem key={prod._id} product={prod} />
                 ))}
               </div>
-
               {/* price details */}
-              <div className={classes.priceSection}></div>
+              <div className={classes.priceSection}>
+                <p className={classes.heading}>PRICE DETAILS</p>
+                <div className={classes.detailsSection}>
+                  {/* total mrp */}
+                  <div className={classes.detailsBox}>
+                    <p className={classes.detailsKey}>Total MRP</p>
+                    <p
+                      className={classes.detailsValue}
+                    >{`₹ ${cart.totalPrice}`}</p>
+                  </div>
+
+                  {/* discount on mrp */}
+                  <div className={classes.detailsBox}>
+                    <p className={classes.detailsKey}>Discount on MRP</p>
+                    <p className={classes.detailsValue}>₹ 0</p>
+                  </div>
+
+                  {/* convinience fee */}
+                  <div className={classes.detailsBox}>
+                    <p className={classes.detailsKey}>Convenience Fee</p>
+                    <p className={classes.detailsValue}>₹ 45</p>
+                  </div>
+
+                  {/* divider */}
+                  <div className={classes.divider}></div>
+
+                  {/* total price */}
+                  <div className={classes.detailsBox}>
+                    <p className={classes.detailsKey}>Total Price</p>
+                    <p className={classes.detailsValue}>
+                      {cart.totalPrice + 45}
+                    </p>
+                  </div>
+
+                  {/* Place order button */}
+                  <button className={classes.orderButton}>Place Order</button>
+                </div>
+              </div>
             </div>
           )}
+        </div>
+
+        {/* overview section */}
+        <div className={classes.overview}>
+          <p className={classes.detailsValue}>{`${cart.totalQuantity} ${
+            cart.totalQuantity > 1 ? "Items" : "Item"
+          }`}</p>
+          <p className={classes.detailsValue}>{`₹ ${cart.totalPrice}`}</p>
         </div>
       </div>
     </div>

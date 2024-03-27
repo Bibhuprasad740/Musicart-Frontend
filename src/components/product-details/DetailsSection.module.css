@@ -70,46 +70,46 @@
 
 @media (max-width: 768px) {
   .detailsSection {
-    padding: 0.5rem; /* Adjusted padding for smaller screens */
+    padding: 0.5rem;
   }
 
   .name {
-    font-size: 1.5rem; /* Adjusted font size for smaller screens */
+    font-size: 1.5rem;
   }
 
   .price,
   .details,
   .color {
-    font-size: 1.2rem; /* Adjusted font size for smaller screens */
+    font-size: 1.2rem;
   }
 
   .description {
-    font-size: 1rem; /* Adjusted font size for smaller screens */
+    font-size: 1rem;
   }
 
   .features {
-    margin-left: 1rem; /* Adjusted margin for smaller screens */
+    margin-left: 1rem;
   }
 
   .cartButton,
   .buyButton {
-    width: 100%; /* Full width for buttons on smaller screens */
+    width: 100%;
   }
 }
 
 @media (max-width: 576px) {
   .name {
-    font-size: 1.2rem; /* Further adjusted font size for even smaller screens */
+    font-size: 1.2rem;
   }
 
   .price,
   .details,
   .color {
-    font-size: 1rem; /* Further adjusted font size for even smaller screens */
+    font-size: 1rem;
   }
 
   .description {
-    font-size: 0.9rem; /* Further adjusted font size for even smaller screens */
+    font-size: 0.9rem;
   }
 
   .feature {

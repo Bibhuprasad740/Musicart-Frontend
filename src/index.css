@@ -10,6 +10,8 @@
   --secondary-hover-color: aliceblue;
   --border-color: rgb(208, 208, 208);
   --error-color: rgb(239, 2, 2);
+  --order-button-color: rgb(255, 200, 0);
+  --cart-button-color: rgb(255, 221, 0);
 }
 
 body {
