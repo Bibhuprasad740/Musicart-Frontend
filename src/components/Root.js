@@ -32,9 +32,10 @@ const Root = () => {
     if (!cart.changed) {
       return;
     }
+    console.log("Effect running in root..");
 
     dispatch(updateCart(cart, token));
-  }, [cart, dispatch, token]);
+  }, [cart.changed, dispatch, token]);
   return (
     <div className={classes.root}>
       <div className={classes.main}>

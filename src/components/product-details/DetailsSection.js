@@ -27,8 +27,10 @@ const DetailsSection = ({ product }) => {
       <p className={classes.description}>{product.description}</p>
       <p className={classes.about}>About this item</p>
       <ul className={classes.features}>
-        {product.features.map((feature) => (
-          <li className={classes.feature}>{feature}</li>
+        {product.features.map((feature, index) => (
+          <li className={classes.feature} key={index}>
+            {feature}
+          </li>
         ))}
       </ul>
       <p className={classes.details}>Available - In Stock</p>

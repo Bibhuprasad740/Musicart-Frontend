@@ -18,6 +18,9 @@ const cartSlice = createSlice({
     setIsLoading(state, action) {
       state.isLoading = action.payload;
     },
+    setChanged(state, action) {
+      state.changed = action.payload;
+    },
     replaceCart(state, action) {
       state.items = action.payload.items;
       state.totalQuantity = action.payload.totalQuantity;
@@ -102,7 +105,6 @@ export const updateCart = (cart, token) => {
     } catch (error) {
       console.log("Error in cartSlice.updateCart", error);
     }
-
     dispatch(cartActions.setIsLoading(true));
   };
 };

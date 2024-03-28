@@ -10,14 +10,15 @@ const ImageSection = ({ images }) => {
   return (
     <div className={classes.imageSection}>
       <div className={classes.mainImage}>
-        <img src={mainImage} alt="" />
+        <img src={mainImage} alt="" key="key" />
       </div>
       <div className={classes.thumbnails}>
-        {images.map((image) => (
+        {images.map((image, index) => (
           <img
             className={classes.thumbnail}
             src={image}
             alt=""
+            key={index}
             onClick={() => changeImage(image)}
           />
         ))}
