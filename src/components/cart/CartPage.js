@@ -10,11 +10,18 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { getProductApi } from "../../backend_apis";
 import CartItem from "./CartItem";
+import { useNavigate } from "react-router-dom";
+import LoadingProgressBar from "../reusables/LoadingProgressBar";
 
 const CartPage = () => {
+  const navigate = useNavigate();
   const cart = useSelector((state) => state.cart);
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const navigateToCheckoutPage = () => {
+    navigate("/checkout");
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -61,7 +68,7 @@ const CartPage = () => {
 
           {/* cart details */}
           {isLoading ? (
-            <div></div>
+            <p>Loading...</p>
           ) : (
             <div className={classes.detailsMain}>
               {/* cart items */}
@@ -106,7 +113,12 @@ const CartPage = () => {
                   </div>
 
                   {/* Place order button */}
-                  <button className={classes.orderButton}>Place Order</button>
+                  <button
+                    className={classes.orderButton}
+                    onClick={navigateToCheckoutPage}
+                  >
+                    Place Order
+                  </button>
                 </div>
               </div>
             </div>

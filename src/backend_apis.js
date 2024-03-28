@@ -12,3 +12,7 @@ exports.getProductApi = `${BASE_URL}/api/products`;
 // cart apis
 exports.fetchCartApi = `${BASE_URL}/cart/fetchCart`;
 exports.updateCartApi = `${BASE_URL}/cart/update`;
+
+// address apis
+// /addresses/:userId
+exports.getAddressesApi = `${BASE_URL}/addresses`;

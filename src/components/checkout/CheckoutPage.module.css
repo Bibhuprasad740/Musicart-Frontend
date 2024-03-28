@@ -1,3 +1,301 @@
-.checkoutPage {
-  color: red;
+.checkoutHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.headerTitle {
+  font-size: 2rem;
+  text-decoration: underline;
+}
+
+.detailsMain {
+  display: flex;
+  width: 100%;
+}
+
+.productsSection {
+  width: 70%;
+}
+
+.infoBox,
+.reviewBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1rem;
+  position: relative;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.userAddress {
+  padding: 10px;
+  font-size: 1rem;
+}
+
+.addAddressButton {
+  margin-top: 10px;
+  /* background-color: transparent; */
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.priceSection {
+  width: 30%;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  height: 100%;
+}
+
+.heading,
+.redHeading,
+.overviewHeading {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin: 1rem 0;
+}
+
+.redHeading,
+.overviewHeading {
+  color: var(--error-color);
+}
+
+.overviewHeading {
+  margin: 0;
+}
+
+.imageSection {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 20vw;
+  /* background-color: red; */
+}
+
+.image {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  width: 30%;
+  height: auto;
+  cursor: pointer;
+}
+
+.detailsSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.detailsBox,
+.totalBox {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 10px;
+}
+
+.paymentBox,
+.options {
+  /* display: flex;
+  justify-content: flex-start;
+  align-items: center; */
+  padding: 10px;
+  background-color: rgb(246, 246, 246);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  min-width: 10vw;
+}
+
+.paymentBox:hover {
+  transform: scale(0.95);
+}
+
+.options {
+  padding: 0;
+  position: absolute;
+  right: 1rem;
+  top: 4rem;
+  z-index: 20;
+}
+
+.option {
+  padding: 10px;
+}
+
+.option:hover {
+  background-color: black;
+  color: white;
+}
+
+.detailsKey,
+.detailsValue {
+  font-size: 1.2rem;
+}
+
+.detailsValue {
+  font-weight: bold;
+}
+
+.divider {
+  height: 1px;
+  background-color: var(--border-color);
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.policy {
+  text-align: center;
+}
+
+.topOrderButton,
+.bottomOrderButton,
+.overviewButton {
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: var(--order-button-color);
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.bottomOrderButton {
+  display: none;
+}
+
+.overviewButton {
+  width: 20vw;
+}
+
+.overview {
+  margin: 1rem 0;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  width: 65vw;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+}
+
+.overviewDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.main {
+  padding: 1rem 4rem;
+}
+
+.mobile {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  .imageSection {
+    width: 40vw;
+  }
+  .main {
+    padding: 1rem;
+  }
+  .detailsKey,
+  .detailsValue {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .detailsMain {
+    flex-direction: column;
+  }
+  .detailsBox {
+    justify-content: space-between;
+  }
+  .priceSection {
+    width: 100%;
+    border: none;
+  }
+  .paymentBox,
+  .options {
+    min-width: 40vw;
+  }
+  .productsSection {
+    width: 100%;
+  }
+  .policy {
+    display: none;
+  }
+  .overview {
+    margin: 0;
+  }
+  .mobile {
+    display: none;
+  }
+
+  .headerTitle {
+    margin-bottom: 1rem;
+  }
+
+  .topOrderButton {
+    display: none;
+  }
+  .bottomOrderButton {
+    display: block;
+    border-radius: 10px;
+  }
+
+  .heading {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .overview {
+    display: none;
+  }
+
+  .orderButton {
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+  }
+
+  .productsSection,
+  .priceSection {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .totalBox {
+    justify-content: space-between;
+  }
+  .headerTitle {
+    font-size: 1.5rem;
+  }
+  .imageSection {
+    width: 80vw;
+    gap: 5px;
+  }
+  .detailsKey,
+  .detailsValue {
+    font-size: 1rem;
+  }
+  .bottomOrderButton {
+    padding: 0.7rem;
+  }
+  .desktop {
+    display: none;
+  }
+  .mobile {
+    display: block;
+  }
 }

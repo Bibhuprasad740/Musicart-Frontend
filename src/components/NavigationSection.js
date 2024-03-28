@@ -60,11 +60,13 @@ const NavigationSection = () => {
       {/* cart and account */}
       <div className={classes.rightPortion}>
         {/* cart */}
-        <div className={classes.cart} onClick={navigateToCart}>
-          <GrCart color="white" size={25} />
-          <p>View Cart</p>
-          <p>{cartSize}</p>
-        </div>
+        {pathname !== "/cart" && pathname !== "/checkout" && (
+          <div className={classes.cart} onClick={navigateToCart}>
+            <GrCart color="white" size={25} />
+            <p>View Cart</p>
+            <p>{cartSize}</p>
+          </div>
+        )}
         {/* Account */}
         {auth?.user && pathname === "/" && (
           <>

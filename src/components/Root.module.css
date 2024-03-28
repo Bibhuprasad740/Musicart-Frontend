@@ -8,6 +8,7 @@
 
 .main {
   min-height: 94vh;
+  overflow-x: hidden;
 }
 
 @media (max-width: 600px) {
