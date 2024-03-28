@@ -1,0 +1,15 @@
+.loadingProgressBar {
+  width: 100%;
+  height: 0.5vh;
+}
+
+.bar {
+  height: 100%;
+  background-color: #007bff;
+}
+
+@media (max-width: 768px) {
+  .loadingProgressBar {
+    height: 0.7vh;
+  }
+}

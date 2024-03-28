@@ -2,8 +2,20 @@ import React from "react";
 
 import classes from "./DetailsSection.module.css";
 import Rating from "./Rating";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../../store/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 const DetailsSection = ({ product }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const addToCartHandler = () => {
+    dispatch(cartActions.addItemToCart(product));
+  };
+  const buyNowHandler = () => {
+    dispatch(cartActions.addItemToCart(product));
+    navigate("/cart");
+  };
   return (
     <div className={classes.detailsSection}>
       <p className={classes.name}>{product.name}</p>
@@ -23,8 +35,12 @@ const DetailsSection = ({ product }) => {
       <p className={classes.details}>{`Brand - ${product.brand}`}</p>
 
       {/* Add to cart button */}
-      <button className={classes.cartButton}>Add to cart</button>
-      <button className={classes.buyButton}>Buy Now</button>
+      <button className={classes.cartButton} onClick={addToCartHandler}>
+        Add to cart
+      </button>
+      <button className={classes.buyButton} onClick={buyNowHandler}>
+        Buy Now
+      </button>
     </div>
   );
 };

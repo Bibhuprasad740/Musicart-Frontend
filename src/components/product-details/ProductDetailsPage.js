@@ -10,6 +10,7 @@ import DetailsSection from "./DetailsSection";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { getProductApi } from "../../backend_apis";
+import LoadingProgressBar from "../reusables/LoadingProgressBar";
 
 const ProductDetailsPage = () => {
   const { productId } = useParams();
@@ -45,7 +46,7 @@ const ProductDetailsPage = () => {
       </section>
 
       {isLoading ? (
-        <div></div>
+        <LoadingProgressBar />
       ) : (
         <div className={classes.main}>
           <NavigationSection />

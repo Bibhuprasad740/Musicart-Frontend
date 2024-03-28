@@ -17,6 +17,7 @@ import Product from "../reusables/Product";
 import FeedbackForm from "./FeedbackForm";
 import { useDispatch, useSelector } from "react-redux";
 import { uiActions } from "../../store/uiSlice";
+import LoadingProgressBar from "../reusables/LoadingProgressBar";
 
 const size = 25;
 
@@ -73,7 +74,7 @@ const HomePage = () => {
         </div>
       </section>
       {isLoadingProducts ? (
-        <div></div>
+        <LoadingProgressBar />
       ) : (
         <div className={classes.main}>
           <NavigationSection />

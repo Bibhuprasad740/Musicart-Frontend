@@ -66,7 +66,7 @@ const NavigationSection = () => {
           <p>{cartSize}</p>
         </div>
         {/* Account */}
-        {auth.user && (
+        {auth?.user && pathname === "/" && (
           <>
             <div onClick={accountClickHandler} className={classes.account}>
               <p className={classes.action}>{getNameAbbr(auth.user.name)}</p>
