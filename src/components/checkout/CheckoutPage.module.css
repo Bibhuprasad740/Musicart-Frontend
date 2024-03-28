@@ -89,6 +89,10 @@
   cursor: pointer;
 }
 
+.selected {
+  border: 1px solid rgb(104, 104, 104);
+}
+
 .detailsSection {
   display: flex;
   flex-direction: column;
@@ -282,7 +286,7 @@
     font-size: 1.5rem;
   }
   .imageSection {
-    width: 80vw;
+    width: 50vw;
     gap: 5px;
   }
   .detailsKey,

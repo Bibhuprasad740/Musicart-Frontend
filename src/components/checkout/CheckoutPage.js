@@ -17,6 +17,7 @@ const CheckoutPage = () => {
   const user = useSelector((state) => state.auth.user);
   const token = useSelector((state) => state.auth.token);
   const [products, setProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const [address, setAddress] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("Mode of payment");
   const [showOptions, setShowOptions] = useState(false);
@@ -184,15 +185,40 @@ const CheckoutPage = () => {
                   <p className={classes.redHeading}>
                     3. Review items and delivery
                   </p>
-                  <div className={classes.imageSection}>
-                    {products.map((product) => (
-                      <img
-                        className={classes.image}
-                        src={product.imageUrls[0]}
-                        key={product._id}
-                        alt=""
-                      />
-                    ))}
+                  <div>
+                    <div className={classes.imageSection}>
+                      {products.map((product) => (
+                        <img
+                          className={
+                            selectedProduct?._id !== product._id
+                              ? classes.image
+                              : `${classes.image} ${classes.selected}`
+                          }
+                          src={product.imageUrls[0]}
+                          key={product._id}
+                          onClick={() => setSelectedProduct(product)}
+                          alt=""
+                        />
+                      ))}
+                    </div>
+
+                    {/* selected item details */}
+                    {selectedProduct && (
+                      <div style={{ "margin-top": "20px" }}>
+                        <p className={classes.heading}>
+                          {selectedProduct.name}
+                        </p>
+                        <p className={classes.detailsKey}>
+                          {`Color: ${selectedProduct.color} | Quantity: ${selectedProduct.quantity}`}
+                        </p>
+                        <p className={classes.detailsKey}>
+                          Estimated Delivery:
+                        </p>
+                        <p className={classes.detailsKey}>
+                          Monday - Free Standard Delivery
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </section>
                 {/* divider */}
