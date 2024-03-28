@@ -93,6 +93,14 @@
   border: 1px solid rgb(104, 104, 104);
 }
 
+.invalid {
+  border: 1px solid var(--error-color);
+}
+
+.error {
+  color: var(--error-color);
+}
+
 .detailsSection {
   display: flex;
   flex-direction: column;
@@ -295,6 +303,9 @@
   }
   .bottomOrderButton {
     padding: 0.7rem;
+  }
+  .redHeading {
+    font-size: 1rem;
   }
   .desktop {
     display: none;

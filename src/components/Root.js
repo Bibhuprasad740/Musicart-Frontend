@@ -35,7 +35,7 @@ const Root = () => {
     console.log("Effect running in root..");
 
     dispatch(updateCart(cart, token));
-  }, [cart.changed, dispatch, token]);
+  }, [cart, dispatch, token]);
   return (
     <div className={classes.root}>
       <div className={classes.main}>

@@ -32,8 +32,8 @@ const cartSlice = createSlice({
       state.totalQuantity = 0;
       state.totalPrice = 0;
       state.userId = null;
-      state.changed = false;
       state.isLoading = false;
+      state.changed = true;
     },
     addItemToCart(state, action) {
       const newItem = action.payload;

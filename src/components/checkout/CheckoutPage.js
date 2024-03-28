@@ -5,21 +5,30 @@ import DesktopHeader from "../DesktopHeader";
 import NavigationSection from "../NavigationSection";
 import BackButton from "../reusables/BackButton";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { getAddressesApi, getProductApi } from "../../backend_apis";
 import { useNavigate } from "react-router-dom";
+import useInput from "../hooks/use-input";
+import { placeOrder } from "../../store/orderSlice";
+import { cartActions } from "../../store/cartSlice";
 // import AddAddressModal from "./AddAddressModal";
+
+const validateAddress = (address) => {
+  return address.trim().length > 0;
+};
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const cart = useSelector((state) => state.cart);
   const user = useSelector((state) => state.auth.user);
   const token = useSelector((state) => state.auth.token);
+  const isPlacingOrder = useSelector((state) => state.order.isLoading);
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const [address, setAddress] = useState("");
-  const [paymentMethod, setPaymentMethod] = useState("Mode of payment");
+  const [paymentMode, setPaymentMode] = useState("Mode of payment");
   const [showOptions, setShowOptions] = useState(false);
   // const [addresses, setAddresses] = useState([]);
   // const [selectedAddress, setSelectedAddress] = useState(null);
@@ -27,22 +36,65 @@ const CheckoutPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   // const [isAddressLoading, setIsAddressLoading] = useState(false);
 
+  const {
+    value: addressValue,
+    isValid: isAddressValid,
+    hasError: addressHasError,
+    valueChangeHandler: addressChangeHandler,
+    inputBlueHandler: addressBlurHandler,
+    reset: resetAddress,
+  } = useInput(validateAddress);
+
   const navigateToCheckoutPage = () => {
     navigate("/checkout");
-  };
-
-  const addressChangeHandler = (event) => {
-    console.log(event.target.value);
-    setAddress(event.target.value);
   };
 
   const toggleOptionsHandler = () => {
     setShowOptions((state) => !state);
   };
 
-  const selectPaymentMethodHandle = (method) => {
-    setPaymentMethod(method);
+  const selectPaymentModeHandle = (method) => {
+    setPaymentMode(method);
     setShowOptions(false);
+  };
+
+  const isPaymentModeValid = paymentMode !== "Mode of payment";
+
+  let orderIsValid = false;
+
+  if (isAddressValid && isPaymentModeValid) {
+    orderIsValid = true;
+  }
+
+  const getAbbr = (paymentMode) => {
+    if (paymentMode === "Pay on delivery") {
+      return "POD";
+    } else if (paymentMode === "Card") {
+      return "CARD";
+    }
+    return paymentMode;
+  };
+
+  const orderPlaceHandler = async () => {
+    if (!orderIsValid) {
+      return;
+    }
+
+    const paymentModeAbbr = getAbbr(paymentMode);
+    // place order
+    const orderId = await dispatch(
+      placeOrder({
+        name: user.name,
+        products,
+        totalPrice: cart.totalPrice,
+        address: addressValue,
+        paymentMode: paymentModeAbbr,
+        token,
+      })
+    );
+    dispatch(cartActions.clearCart());
+    resetAddress();
+    navigate(`/orders/${orderId}`);
   };
 
   useEffect(() => {
@@ -131,13 +183,21 @@ const CheckoutPage = () => {
                   <div>
                     <p className={classes.name}>{user.name}</p>
                     <textarea
-                      className={classes.userAddress}
+                      className={
+                        addressHasError
+                          ? `${classes.userAddress} ${classes.invalid}`
+                          : classes.userAddress
+                      }
                       placeholder="Enter your address"
                       name="address"
                       rows="3"
-                      value={address}
+                      value={addressValue}
                       onChange={addressChangeHandler}
+                      onBlur={addressBlurHandler}
                     ></textarea>
+                    {addressHasError && (
+                      <p className={classes.error}>*Required field</p>
+                    )}
                   </div>
                 </section>
                 {/* divider */}
@@ -147,30 +207,34 @@ const CheckoutPage = () => {
                 <section className={classes.infoBox}>
                   <p className={classes.redHeading}>2. Payment Method</p>
                   <div
-                    className={classes.paymentBox}
+                    className={
+                      !isPaymentModeValid
+                        ? `${classes.paymentBox} ${classes.invalid}`
+                        : classes.paymentBox
+                    }
                     onClick={toggleOptionsHandler}
                   >
-                    <p>{paymentMethod}</p>
+                    <p>{paymentMode}</p>
                   </div>
                   {showOptions && (
                     <div className={classes.options}>
                       <p
                         className={classes.option}
                         onClick={() =>
-                          selectPaymentMethodHandle("Pay on delivery")
+                          selectPaymentModeHandle("Pay on delivery")
                         }
                       >
                         Pay on delivery
                       </p>
                       <p
                         className={classes.option}
-                        onClick={() => selectPaymentMethodHandle("UPI")}
+                        onClick={() => selectPaymentModeHandle("UPI")}
                       >
                         UPI
                       </p>
                       <p
                         className={classes.option}
-                        onClick={() => selectPaymentMethodHandle("Card")}
+                        onClick={() => selectPaymentModeHandle("Card")}
                       >
                         Card
                       </p>
@@ -204,7 +268,7 @@ const CheckoutPage = () => {
 
                     {/* selected item details */}
                     {selectedProduct && (
-                      <div style={{ "margin-top": "20px" }}>
+                      <div style={{ marginTop: "20px" }}>
                         <p className={classes.heading}>
                           {selectedProduct.name}
                         </p>
@@ -231,9 +295,9 @@ const CheckoutPage = () => {
                   {/* Place order button */}
                   <button
                     className={classes.topOrderButton}
-                    onClick={navigateToCheckoutPage}
+                    onClick={orderPlaceHandler}
                   >
-                    Place Your Order
+                    {isPlacingOrder ? "Loading..." : "Place Your Order"}
                   </button>
                   <p className={classes.policy}>
                     By placing your order, you agree to Musicart privacy notice
@@ -272,9 +336,9 @@ const CheckoutPage = () => {
                   </div>
                   <button
                     className={classes.bottomOrderButton}
-                    onClick={navigateToCheckoutPage}
+                    onClick={orderPlaceHandler}
                   >
-                    Place Your Order
+                    {isPlacingOrder ? "Loading..." : "Place Your Order"}
                   </button>
                 </div>
               </div>
@@ -288,7 +352,7 @@ const CheckoutPage = () => {
             className={classes.overviewButton}
             onClick={navigateToCheckoutPage}
           >
-            Place Your Order
+            {isPlacingOrder ? "Loading..." : "Place Your Order"}
           </button>
           <div className={classes.overviewDetails}>
             <p className={classes.overviewHeading}>{`Order Total: ₹${
