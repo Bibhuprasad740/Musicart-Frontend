@@ -300,6 +300,9 @@
   .redHeading {
     font-size: 1rem;
   }
+  .main {
+    margin-bottom: 8vh;
+  }
   .desktop {
     display: none;
   }

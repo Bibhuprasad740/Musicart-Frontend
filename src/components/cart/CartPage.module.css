@@ -155,6 +155,9 @@
   .cartHeader {
     display: none;
   }
+  .main {
+    margin-bottom: 8vh;
+  }
   .desktop {
     display: none;
   }
