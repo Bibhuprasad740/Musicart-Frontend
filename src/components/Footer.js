@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./Footer.module.css";
 
 import { FaHome } from "react-icons/fa";
@@ -15,6 +15,7 @@ const size = 20;
 const Footer = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
 
   const auth = useSelector((state) => state.auth);
 
@@ -36,6 +37,27 @@ const Footer = () => {
         navigate("/");
     }
   };
+
+  useEffect(() => {
+    switch (pathname) {
+      case "/":
+        setSelectedTab(0);
+        break;
+      case "/cart":
+      case "/checkout":
+        setSelectedTab(1);
+        break;
+      case "/invoices":
+        setSelectedTab(2);
+        break;
+      case "/signin":
+      case "/signup":
+        setSelectedTab(3);
+        break;
+      default:
+        setSelectedTab(5);
+    }
+  }, [pathname]);
 
   const authHandler = () => {
     if (auth?.user) {

@@ -115,9 +115,6 @@
 
 .paymentBox,
 .options {
-  /* display: flex;
-  justify-content: flex-start;
-  align-items: center; */
   padding: 10px;
   background-color: rgb(246, 246, 246);
   cursor: pointer;
@@ -241,7 +238,8 @@
   .options {
     min-width: 40vw;
   }
-  .productsSection {
+  .productsSection,
+  .priceSection {
     width: 100%;
   }
   .policy {
@@ -278,11 +276,6 @@
   .orderButton {
     padding: 0.8rem;
     margin: 0.5rem 0;
-  }
-
-  .productsSection,
-  .priceSection {
-    width: 100%;
   }
 }
 
