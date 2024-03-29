@@ -19,3 +19,5 @@ exports.getAddressesApi = `${BASE_URL}/addresses`;
 
 // order apis
 exports.placeOrderApi = `${BASE_URL}/placeOrder`;
+// /orders/:userId
+exports.getOrdersApi = `${BASE_URL}/orders`;

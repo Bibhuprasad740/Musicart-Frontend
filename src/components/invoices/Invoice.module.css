@@ -1,0 +1,64 @@
+.invoice,
+.detailsSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.invoice {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-color);
+  /* align-items: center; */
+}
+
+.detailsSection {
+  gap: 10px;
+}
+
+.details {
+  width: 20vw;
+}
+
+.name {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.viewButton {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+@media (max-width: 1200px) {
+  .details {
+    width: 30vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .detailsSection img {
+    width: 10vw;
+  }
+  .details {
+    width: 40vw;
+  }
+}
+
+@media (max-width: 576px) {
+  .detailsSection img {
+    width: 15vw;
+  }
+  .info {
+    max-height: 5vh;
+    overflow: hidden;
+  }
+  .viewButton {
+    padding: 8px 10px;
+  }
+  .name {
+    font-size: 1rem;
+  }
+}
