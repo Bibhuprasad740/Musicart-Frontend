@@ -114,4 +114,8 @@
   .feedbackSection img {
     display: none;
   }
+  .productsGrid,
+  .productsList {
+    margin-bottom: 8vh;
+  }
 }

@@ -53,7 +53,9 @@ const InvoicesPage = () => {
         {isLoading ? (
           <div></div>
         ) : invoices.length === 0 ? (
-          <p className={classes.noInvoice}>No invoices found!</p>
+          <div className={classes.noProduct}>
+            <p>No invoices found!</p>
+          </div>
         ) : (
           <div className={classes.invoicesSection}>
             {invoices.map((invoice) => (

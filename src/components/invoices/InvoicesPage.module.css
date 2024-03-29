@@ -4,10 +4,11 @@
   font-weight: bold;
 }
 
-.noInvoice {
-  text-align: center;
-  padding: 20px 0;
-  font-size: 2rem;
+.noProduct {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
 }
 
 .main {

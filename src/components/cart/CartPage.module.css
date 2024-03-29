@@ -84,6 +84,13 @@
   width: 60vw;
 }
 
+.noProduct {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
 .main {
   padding: 1rem 4rem;
 }

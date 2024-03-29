@@ -12,8 +12,48 @@
   font-weight: bold;
 }
 
+.tabBar {
+  display: none;
+}
+
+.bar {
+  height: 3px;
+  margin-bottom: 5px;
+  width: 50%;
+  background-color: var(--primary-color);
+}
+
+.tabContainer {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+}
+
+.tabLabel {
+  font-size: 10px;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
 @media (max-width: 576px) {
   .footer {
+    position: fixed;
+    bottom: 0;
+    background-color: white;
+    justify-content: initial;
+    height: 8vh;
+  }
+  .footerText {
     display: none;
+  }
+  .tabBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    cursor: pointer;
   }
 }
