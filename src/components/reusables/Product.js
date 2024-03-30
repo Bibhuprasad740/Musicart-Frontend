@@ -24,7 +24,8 @@ const Product = ({ product, isGridView }) => {
     navigate(`/products/${product._id}`);
   };
 
-  const addItemToCartHandler = () => {
+  const addItemToCartHandler = (event) => {
+    event.stopPropagation();
     dispatch(cartActions.addItemToCart(product));
   };
 
@@ -32,6 +33,7 @@ const Product = ({ product, isGridView }) => {
     <div className={isGridView ? classes.productGrid : classes.productList}>
       <div className={classes.imageSection}>
         <img
+          onClick={navigateToProductDetaisPage}
           className={isGridView ? classes.image : classes.imageList}
           src={product.imageUrls[0]}
           alt=""

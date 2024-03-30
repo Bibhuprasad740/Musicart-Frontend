@@ -10,9 +10,10 @@ import { authActions } from "../store/authSlice";
 import { cartActions } from "../store/cartSlice";
 
 const NavigationSection = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const auth = useSelector((state) => state.auth);
   const cartSize = useSelector((state) => state.cart.totalQuantity);
-  const dispatch = useDispatch();
   const { pathname } = useLocation();
   const [showOptions, setShowOptions] = useState(false);
 
@@ -23,9 +24,9 @@ const NavigationSection = () => {
   const logoutHandler = () => {
     dispatch(cartActions.clearCart());
     dispatch(authActions.logout());
+    navigate("/");
   };
 
-  const navigate = useNavigate();
   const navigateToCart = () => {
     navigate("/cart");
   };
@@ -76,10 +77,8 @@ const NavigationSection = () => {
             {showOptions && (
               <ul className={classes.accountOptions}>
                 <li className={classes.accountOption}>{auth.user.name}</li>
-                <li className={classes.accountOption}>
-                  <NavLink to="/" onClick={logoutHandler}>
-                    Logout
-                  </NavLink>
+                <li className={classes.accountOption} onClick={logoutHandler}>
+                  Logout
                 </li>
               </ul>
             )}
