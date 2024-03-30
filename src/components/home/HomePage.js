@@ -18,6 +18,7 @@ import FeedbackForm from "./FeedbackForm";
 import { useDispatch, useSelector } from "react-redux";
 import { uiActions } from "../../store/uiSlice";
 import LoadingProgressBar from "../reusables/LoadingProgressBar";
+import { productActions } from "../../store/productSlice";
 
 const size = 25;
 
@@ -49,18 +50,23 @@ const HomePage = () => {
 
   const headphoneTypeChangeHandler = (event) => {
     setHeadphoneType(event.target.value);
+    dispatch(productActions.setTypeFilter(event.target.value));
   };
   const headphoneCompanyChangeHandler = (event) => {
     setHeadphoneCompany(event.target.value);
+    dispatch(productActions.setCompanyFilter(event.target.value));
   };
   const headphoneColorChangeHandler = (event) => {
     setHeadphoneColor(event.target.value);
+    dispatch(productActions.setColorFilter(event.target.value));
   };
   const priceRangeChangeHandler = (event) => {
     setPriceRange(event.target.value);
+    dispatch(productActions.setPriceFilter(event.target.value));
   };
   const sortTypeChangeHandler = (event) => {
     setSortType(event.target.value);
+    dispatch(productActions.setSortingFilter(event.target.value));
   };
 
   return (
@@ -122,7 +128,7 @@ const HomePage = () => {
                 <option value="" selected disabled hidden>
                   Headphone Type
                 </option>
-                <option value="featured">Featured</option>
+                <option value="">Featured</option>
                 <option value="inear">In-ear headphone</option>
                 <option value="onear">On-ear headphone</option>
                 <option value="overear">Over-ear headphone</option>
@@ -136,7 +142,7 @@ const HomePage = () => {
                 <option value="" selected disabled hidden>
                   Company
                 </option>
-                <option value="featured">Featured</option>
+                <option value="">Featured</option>
                 <option value="jbl">JBL</option>
                 <option value="sony">SONY</option>
                 <option value="boat">BOAT</option>
@@ -153,7 +159,7 @@ const HomePage = () => {
                 <option value="" selected disabled hidden>
                   Color
                 </option>
-                <option value="featured">Featured</option>
+                <option value="">Featured</option>
                 <option value="black">Black</option>
                 <option value="blue">Blue</option>
                 <option value="white">White</option>
@@ -168,7 +174,7 @@ const HomePage = () => {
                 <option value="" selected disabled hidden>
                   Price
                 </option>
-                <option value="featured">Featured</option>
+                <option value="">Featured</option>
                 <option value="0-1000">₹0-₹1,000</option>
                 <option value="1000-2000">₹1,000-₹10,000</option>
                 <option value="10000-20000">₹10,000-₹20,000</option>
@@ -184,9 +190,9 @@ const HomePage = () => {
                 <option value="" selected disabled hidden>
                   Sort by: Featured
                 </option>
-                <option value="featured">Featured</option>
-                <option value="PriceLowest">Price:Lowest</option>
-                <option value="PriceHighest">Price:Highest</option>
+                <option value="">Featured</option>
+                <option value="low-high">Price:Low to High</option>
+                <option value="high-low">Price:High to low</option>
                 <option value="a-z">Name:(A-Z)</option>
                 <option value="z-a">Name:(Z-A)</option>
               </select>

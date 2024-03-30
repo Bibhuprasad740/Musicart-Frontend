@@ -14,10 +14,33 @@ const Root = () => {
 
   const cart = useSelector((state) => state.cart);
   const token = useSelector((state) => state.auth.token);
+  const searchQuery = useSelector((state) => state.product.searchQuery);
+  const typeFilter = useSelector((state) => state.product.typeFilter);
+  const companyFilter = useSelector((state) => state.product.companyFilter);
+  const colorFilter = useSelector((state) => state.product.colorFilter);
+  const priceFilter = useSelector((state) => state.product.priceFilter);
+  const sortingFilter = useSelector((state) => state.product.sortingFilter);
 
   useEffect(() => {
-    dispatch(getAllProducts());
-  }, [dispatch]);
+    dispatch(
+      getAllProducts({
+        searchQuery,
+        typeFilter,
+        companyFilter,
+        colorFilter,
+        priceFilter,
+        sortingFilter,
+      })
+    );
+  }, [
+    dispatch,
+    searchQuery,
+    typeFilter,
+    companyFilter,
+    colorFilter,
+    priceFilter,
+    sortingFilter,
+  ]);
 
   useEffect(() => {
     dispatch(fetchCart(token));

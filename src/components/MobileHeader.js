@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./MobileHeader.module.css";
 
 import logo from "../assets/logo_only.png";
 import { CiSearch } from "react-icons/ci";
 import { useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { productActions } from "../store/productSlice";
 
 const MobileHeader = () => {
+  const dispatch = useDispatch();
   const { pathname } = useLocation();
   const isProductPath = pathname.split("/")[1] === "products";
   const isProductPage = pathname === "/" || isProductPath;
   const isNotProductPage = pathname !== "/" && !isProductPage;
 
+  const [query, setQuery] = useState("");
+  const queryChangeHandler = (event) => {
+    setQuery(event.target.value);
+    dispatch(productActions.setSearchQuery(event.target.value));
+  };
   return (
     <header className={classes.mobileHeader}>
       {/* search bar */}
@@ -21,6 +29,8 @@ const MobileHeader = () => {
             className={classes.searchInput}
             type="text"
             placeholder="Search by product name"
+            value={query}
+            onChange={queryChangeHandler}
           />
         </div>
       )}
