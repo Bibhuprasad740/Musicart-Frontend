@@ -43,7 +43,9 @@ const Root = () => {
   ]);
 
   useEffect(() => {
-    dispatch(fetchCart(token));
+    if (token) {
+      dispatch(fetchCart(token));
+    }
   }, [dispatch, token]);
 
   useEffect(() => {

@@ -8,7 +8,12 @@ const CartItem = ({ product }) => {
   const [quantity, setQuantity] = useState(product.quantity);
   const quantityChangeHandler = (event) => {
     setQuantity(event.target.value);
-    dispatch(cartActions.addItemToCart(product));
+    dispatch(
+      cartActions.changeQuantity({
+        item: product,
+        quantity: parseInt(event.target.value),
+      })
+    );
   };
   return (
     <div className={classes.cartItem}>
