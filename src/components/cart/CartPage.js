@@ -33,7 +33,6 @@ const CartPage = () => {
         });
 
         const fetchedProducts = await Promise.all(productRequests);
-        console.log(fetchedProducts);
         setProducts(fetchedProducts);
       } catch (error) {
         console.error("Error fetching products:", error);

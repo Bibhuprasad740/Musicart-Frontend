@@ -42,12 +42,19 @@ const HomePage = () => {
     setShowFeedbackForm(false);
   };
 
+  const [query, setQuery] = useState("");
   const [headphoneType, setHeadphoneType] = useState(null);
   const [headphoneCompany, setHeadphoneCompany] = useState(null);
   const [headphoneColor, setHeadphoneColor] = useState(null);
   const [priceRange, setPriceRange] = useState(null);
   const [sortType, setSortType] = useState("featured");
 
+  const queryChangeHandler = (event) => {
+    setQuery(event.target.value);
+  };
+  const searchProductsHandler = () => {
+    dispatch(productActions.setSearchQuery(query));
+  };
   const headphoneTypeChangeHandler = (event) => {
     setHeadphoneType(event.target.value);
     dispatch(productActions.setTypeFilter(event.target.value));
@@ -80,7 +87,15 @@ const HomePage = () => {
         </div>
       </section>
       {isLoadingProducts ? (
-        <LoadingProgressBar />
+        <div className={classes.loadingContainer}>
+          <LoadingProgressBar />
+          <div className={classes.emptyContainer}>
+            <p className={classes.loadingText}>
+              Hey! hold on! I am using free hosting, loading for the first time
+              can take upto 30 seconds :)
+            </p>
+          </div>
+        </div>
       ) : (
         <div className={classes.main}>
           <NavigationSection />
@@ -89,11 +104,15 @@ const HomePage = () => {
           {/* search bar */}
           <div className={classes.searchBar}>
             <CiSearch size={size} />
-            <input
-              className={classes.searchInput}
-              type="text"
-              placeholder="Search by product name"
-            />
+            <form onSubmit={searchProductsHandler}>
+              <input
+                value={query}
+                onChange={queryChangeHandler}
+                className={classes.searchInput}
+                type="text"
+                placeholder="Search by product name"
+              />
+            </form>
           </div>
 
           {/* Filters section */}

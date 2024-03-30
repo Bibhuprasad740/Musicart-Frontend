@@ -6,6 +6,8 @@ import Footer from "./Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../store/productSlice";
 import { fetchCart, updateCart } from "../store/cartSlice";
+import { Toaster, toast } from "react-hot-toast";
+import { authActions } from "../store/authSlice";
 
 let isInitial = true;
 
@@ -20,6 +22,14 @@ const Root = () => {
   const colorFilter = useSelector((state) => state.product.colorFilter);
   const priceFilter = useSelector((state) => state.product.priceFilter);
   const sortingFilter = useSelector((state) => state.product.sortingFilter);
+
+  const authSuccessMessage = useSelector((state) => state.auth.message);
+  useEffect(() => {
+    if (authSuccessMessage) {
+      toast.success(authSuccessMessage);
+      dispatch(authActions.setMessage(null));
+    }
+  }, [authSuccessMessage, dispatch]);
 
   useEffect(() => {
     dispatch(
@@ -67,6 +77,7 @@ const Root = () => {
         <Outlet />
       </div>
       <Footer />
+      <Toaster position="top-center" />
     </div>
   );
 };

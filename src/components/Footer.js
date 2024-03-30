@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../store/authSlice";
 
 const color = "#2e0052";
-const size = 20;
+const size = 25;
 
 const Footer = () => {
   const navigate = useNavigate();

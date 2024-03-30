@@ -66,7 +66,7 @@ export const signup = (name, phone, email, password) => {
       window.location.href = "/";
     } catch (error) {
       console.log("Error in authSlice.signup", error);
-      dispatch(authActions.setError("Can not create user!"));
+      dispatch(authActions.setError(error.response.data));
     }
 
     dispatch(authActions.setIsLoading(false));
@@ -98,7 +98,7 @@ export const signin = (email, password) => {
       window.location.href = "/";
     } catch (error) {
       console.log("Error in authSlice.signin", error);
-      dispatch(authActions.setError("Can not login!"));
+      dispatch(authActions.setError(error.response.data));
     }
 
     dispatch(authActions.setIsLoading(false));

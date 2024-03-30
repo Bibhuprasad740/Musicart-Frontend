@@ -5,12 +5,14 @@ import Rating from "./Rating";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../store/cartSlice";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const DetailsSection = ({ product }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const addToCartHandler = () => {
     dispatch(cartActions.addItemToCart(product));
+    toast.success("Product added to cart!");
   };
   const buyNowHandler = () => {
     dispatch(cartActions.addItemToCart(product));

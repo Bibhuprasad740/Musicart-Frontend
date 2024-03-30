@@ -27,7 +27,6 @@ const InvoicesPage = () => {
         const response = await axios.get(`${getOrdersApi}/${user._id}`, {
           headers,
         });
-        console.log(response.data);
         setInvoices(response.data);
       } catch (error) {
         console.log("Error in fetching invoices..", error);

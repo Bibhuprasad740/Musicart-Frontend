@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import useInput from "../hooks/use-input";
 import { placeOrder } from "../../store/orderSlice";
 import { cartActions } from "../../store/cartSlice";
+import { toast } from "react-hot-toast";
 // import AddAddressModal from "./AddAddressModal";
 
 const validateAddress = (address) => {
@@ -95,6 +96,7 @@ const CheckoutPage = () => {
     dispatch(cartActions.clearCart());
     resetAddress();
     navigate(`/orders/${orderId}`);
+    toast.success("Order Placed successfully!");
   };
 
   useEffect(() => {

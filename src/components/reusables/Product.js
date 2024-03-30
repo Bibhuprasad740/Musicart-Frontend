@@ -5,6 +5,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../store/cartSlice";
+import { toast } from "react-hot-toast";
 
 const Product = ({ product, isGridView }) => {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ const Product = ({ product, isGridView }) => {
   const addItemToCartHandler = (event) => {
     event.stopPropagation();
     dispatch(cartActions.addItemToCart(product));
+    toast.success("Product added to cart!");
   };
 
   return (

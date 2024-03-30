@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classes from "./SigninPage.module.css";
 
 import logo from "../../../assets/logo.png";
@@ -6,10 +6,11 @@ import SubmitButton from "../../reusables/SubmitButton";
 import RedirectButton from "../../reusables/RedirectButton";
 import { NavLink } from "react-router-dom";
 import useInput from "../../hooks/use-input";
-import { signin } from "../../../store/authSlice";
-import { useDispatch } from "react-redux";
+import { authActions, signin } from "../../../store/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 import MobileHeader from "../../MobileHeader";
 import DesktopHeader from "../../DesktopHeader";
+import { toast } from "react-hot-toast";
 
 const validateEmail = (email) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -22,6 +23,15 @@ const validatePassword = (password) => {
 const SigninPage = () => {
   const dispatch = useDispatch();
 
+  const authError = useSelector((state) => state.auth.error);
+
+  useEffect(() => {
+    if (authError) {
+      toast.error(authError);
+      dispatch(authActions.setError(null));
+    }
+  }, [authError, dispatch]);
+
   // email input state
   const {
     value: emailInputValue,
@@ -29,7 +39,6 @@ const SigninPage = () => {
     hasError: emailHasError,
     valueChangeHandler: emailInputChangeHandler,
     inputBlueHandler: emailInputBlurHandler,
-    reset: resetEmail,
   } = useInput(validateEmail);
 
   // password input state
@@ -39,7 +48,6 @@ const SigninPage = () => {
     hasError: passwordHasError,
     valueChangeHandler: passwordInputChangeHandler,
     inputBlueHandler: passwordInputBlurHandler,
-    reset: resetPassword,
   } = useInput(validatePassword);
 
   let formIsValid = false;
@@ -56,10 +64,7 @@ const SigninPage = () => {
 
     // do something with the data
     dispatch(signin(emailInputValue, passwordInputValue));
-
     // reset the input
-    resetEmail();
-    resetPassword();
   };
   return (
     <div className={classes.signinPage}>

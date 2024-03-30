@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classes from "./SignupPage.module.css";
 
 import logo from "../../../assets/logo.png";
 import SubmitButton from "../../reusables/SubmitButton";
 import { NavLink } from "react-router-dom";
 import useInput from "../../hooks/use-input";
-import { useDispatch } from "react-redux";
-import { signup } from "../../../store/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions, signup } from "../../../store/authSlice";
 import MobileHeader from "../../MobileHeader";
 import DesktopHeader from "../../DesktopHeader";
+import { toast } from "react-hot-toast";
 
 const validateName = (name) => {
   return name.trim().length > 0;
@@ -27,6 +28,15 @@ const validatePassword = (password) => {
 const SignupPage = () => {
   const dispatch = useDispatch();
 
+  const authError = useSelector((state) => state.auth.error);
+
+  useEffect(() => {
+    if (authError) {
+      toast.error(authError);
+      dispatch(authActions.setError(null));
+    }
+  }, [authError, dispatch]);
+
   // name input state
   const {
     value: nameInputValue,
@@ -34,7 +44,6 @@ const SignupPage = () => {
     hasError: nameHasError,
     valueChangeHandler: nameInputChangeHandler,
     inputBlueHandler: nameInputBlurHandler,
-    reset: resetName,
   } = useInput(validateName);
 
   // phone number input state
@@ -44,7 +53,6 @@ const SignupPage = () => {
     hasError: phoneHasError,
     valueChangeHandler: phoneInputChangeHandler,
     inputBlueHandler: phoneInputBlurHandler,
-    reset: resetPhone,
   } = useInput(validatePhone);
 
   // email input state
@@ -54,7 +62,6 @@ const SignupPage = () => {
     hasError: emailHasError,
     valueChangeHandler: emailInputChangeHandler,
     inputBlueHandler: emailInputBlurHandler,
-    reset: resetEmail,
   } = useInput(validateEmail);
 
   // password input state
@@ -64,7 +71,6 @@ const SignupPage = () => {
     hasError: passwordHasError,
     valueChangeHandler: passwordInputChangeHandler,
     inputBlueHandler: passwordInputBlurHandler,
-    reset: resetPassword,
   } = useInput(validatePassword);
 
   let formIsValid = false;
@@ -88,12 +94,6 @@ const SignupPage = () => {
         passwordInputValue
       )
     );
-
-    // reset the input
-    resetName();
-    resetPhone();
-    resetEmail();
-    resetPassword();
   };
   return (
     <div className={classes.signupPage}>
