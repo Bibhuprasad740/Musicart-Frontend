@@ -7,7 +7,7 @@ import BackButton from "../reusables/BackButton";
 
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { getAddressesApi, getProductApi } from "../../backend_apis";
+import { getProductApi } from "../../backend_apis";
 import { useNavigate } from "react-router-dom";
 import useInput from "../hooks/use-input";
 import { placeOrder } from "../../store/orderSlice";

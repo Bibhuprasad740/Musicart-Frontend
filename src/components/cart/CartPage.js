@@ -11,7 +11,6 @@ import axios from "axios";
 import { getProductApi } from "../../backend_apis";
 import CartItem from "./CartItem";
 import { useNavigate } from "react-router-dom";
-import LoadingProgressBar from "../reusables/LoadingProgressBar";
 
 const CartPage = () => {
   const navigate = useNavigate();

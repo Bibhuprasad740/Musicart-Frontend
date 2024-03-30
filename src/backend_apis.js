@@ -24,3 +24,6 @@ exports.placeOrderApi = `${BASE_URL}/placeOrder`;
 exports.getOrdersApi = `${BASE_URL}/orders`;
 // /orders/:orderId
 exports.getOrderApi = `${BASE_URL}/order`;
+
+// feedabck api
+exports.submitFeedbackApi = `${BASE_URL}/feedback/submit`;

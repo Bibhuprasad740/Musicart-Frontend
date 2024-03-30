@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./FeedbackForm.module.css";
 import useInput from "../hooks/use-input";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { submitFeedbackApi } from "../../backend_apis";
 
 const validateType = (type) => {
   return type === "bug" || type === "feedback" || type === "query";
@@ -10,6 +13,10 @@ const validateFeedback = (feedback) => {
 };
 
 const FeedbackForm = ({ onClose }) => {
+  const token = useSelector((state) => state.auth.token);
+
+  const [isLoading, setIsLoading] = useState(false);
+
   const {
     value: typeInputValue,
     isValid: isTypeValid,
@@ -34,18 +41,29 @@ const FeedbackForm = ({ onClose }) => {
     formIsValid = true;
   }
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
     if (!formIsValid) {
       return;
     }
+    setIsLoading(true);
 
-    // do something with it
-    console.log(typeInputValue, feedbackInputValue);
-
+    // save feedback in database
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
+    const body = {
+      type: typeInputValue,
+      feedback: feedbackInputValue,
+    };
+    const response = await axios.post(submitFeedbackApi, body, { headers });
+    console.log(response.data);
     resetType();
     resetFeedback();
     onClose();
+
+    setIsLoading(false);
   };
   return (
     <div className={classes.formContainer}>
@@ -78,7 +96,7 @@ const FeedbackForm = ({ onClose }) => {
           <p className={classes.errorText}>*Required Field</p>
         )}
         <button disabled={!formIsValid} type="submit">
-          Submit
+          {isLoading ? "Please wait" : "Submit"}
         </button>
       </form>
     </div>
