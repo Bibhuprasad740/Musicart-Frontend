@@ -78,6 +78,11 @@ const CheckoutPage = () => {
 
   const orderPlaceHandler = async () => {
     if (!orderIsValid) {
+      if (!isAddressValid) {
+        toast.error("Please add a valid address!");
+      } else {
+        toast.error("Please select a payment option!");
+      }
       return;
     }
 

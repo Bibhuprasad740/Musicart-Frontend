@@ -6,9 +6,18 @@ const LoadingProgressBar = () => {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setProgress((prevProgress) =>
-        prevProgress >= 100 ? 100 : prevProgress + 1
-      );
+      setProgress((prevProgress) => {
+        if (prevProgress >= 70) {
+          return prevProgress + 0.5;
+        }
+        if (prevProgress >= 80) {
+          return prevProgress + 0.2;
+        }
+        if (prevProgress >= 90) {
+          return prevProgress + 0.1;
+        }
+        return prevProgress + 1;
+      });
     }, 100); // Adjust the interval as needed
 
     return () => clearInterval(intervalId);
