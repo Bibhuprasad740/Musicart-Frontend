@@ -8,6 +8,7 @@ import { BsPersonCircle } from "react-icons/bs";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../store/authSlice";
+import Modal from "./reusables/Modal";
 
 const color = "#2e0052";
 const size = 25;
@@ -20,6 +21,7 @@ const Footer = () => {
   const auth = useSelector((state) => state.auth);
 
   const [selectedTab, setSelectedTab] = useState(0);
+  const [showModal, setShowModal] = useState(false);
 
   const selectTabHandler = (tab) => {
     setSelectedTab(tab);
@@ -59,18 +61,39 @@ const Footer = () => {
     }
   }, [pathname]);
 
-  const authHandler = () => {
+  const logoutClickHandler = () => {
     if (auth?.user) {
-      dispatch(authActions.logout());
-      setSelectedTab(0);
-      navigate("/");
-      return;
+      setShowModal(true);
+    } else {
+      setSelectedTab(3);
+      navigate("/signin");
     }
-    setSelectedTab(3);
-    navigate("/signin");
+  };
+
+  const logout = () => {
+    setShowModal(false);
+    dispatch(authActions.logout());
+    navigate("/");
+    setSelectedTab(0);
   };
   return (
     <footer className={classes.footer}>
+      {showModal && (
+        <Modal>
+          <p className={classes.logoutText}>Are you sure want to logout?</p>
+          <div className={classes.action}>
+            <button
+              className={classes.cancelButton}
+              onClick={() => setShowModal(false)}
+            >
+              Cancel
+            </button>
+            <button className={classes.confirmButton} onClick={logout}>
+              Logout
+            </button>
+          </div>
+        </Modal>
+      )}
       <p className={classes.footerText}>Musicart | All rights reserved</p>
       <div className={classes.tabBar}>
         {/* home button */}
@@ -104,7 +127,7 @@ const Footer = () => {
         </div>
 
         {/* login button */}
-        <div className={classes.tabContainer} onClick={authHandler}>
+        <div className={classes.tabContainer} onClick={logoutClickHandler}>
           {selectedTab === 3 && <div className={classes.bar}></div>}
           <BsPersonCircle color={color} size={size} />
           <p className={classes.tabLabel}>{auth?.user ? "Logout" : "Login"}</p>
