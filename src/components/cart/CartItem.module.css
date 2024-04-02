@@ -44,6 +44,57 @@
   border: none;
 }
 
+.deleteButton {
+  display: flex;
+  padding: 5px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  height: 5vh;
+  background-color: white;
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+}
+
+.container img {
+  width: 50%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 20px;
+  border: 1px solid rgb(235, 235, 235);
+}
+
+.detailsBox {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.deleteText {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.cancelButton,
+.confirmButton {
+  padding: 10px 0;
+  border-radius: 5px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.confirmButton {
+  background-color: rgb(152, 64, 64);
+  color: white;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
   .cartItem {
@@ -74,10 +125,19 @@
     display: flex;
     gap: 10px;
   }
+  .deleteButton {
+    display: none;
+  }
+  .deleteText {
+    font-size: 1.2rem;
+  }
 }
 
 @media (max-width: 576px) {
   .heading {
+    font-size: 1rem;
+  }
+  .deleteText {
     font-size: 1rem;
   }
 }

@@ -56,6 +56,17 @@ const cartSlice = createSlice({
         existingItem.quantity += 1;
       }
     },
+    deleteItemFromCart(state, action) {
+      const productId = action.payload.id;
+      const quantity = action.payload.quantity;
+      const price = action.payload.price;
+      state.changed = true;
+      state.items = state.items.filter(
+        (cartItem) => cartItem.item !== productId
+      );
+      state.totalPrice = state.totalPrice - price * quantity;
+      state.totalQuantity -= quantity;
+    },
     changeQuantity(state, action) {
       const item = action.payload.item;
       const newQuantity = action.payload.quantity;
@@ -107,7 +118,6 @@ export const fetchCart = (token) => {
 };
 
 export const updateCart = (cart, token) => {
-  console.log(token);
   return async (dispatch) => {
     dispatch(cartActions.setIsLoading(true));
     try {
