@@ -47,7 +47,7 @@ const ProductDetailsPage = () => {
 
       {isLoading ? (
         <LoadingProgressBar />
-      ) : (
+      ) : product ? (
         <div className={classes.main}>
           <NavigationSection />
           <BackButton backTo="Products" redirectTo="/" />
@@ -70,7 +70,7 @@ const ProductDetailsPage = () => {
             </div>
           </div>
         </div>
-      )}
+      ) : <p>Can not get product</p>}
     </div>
   );
 };
