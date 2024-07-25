@@ -1,5 +1,6 @@
 // const BASE_URL = "http://localhost:8080";
-const BASE_URL = "https://musicart-backend-1pqc94gdd.vercel.app";
+// const BASE_URL = "https://musicart-backend-1pqc94gdd.vercel.app";
+const BASE_URL = "https://musicart-backend-6bp8.onrender.com";
 
 /*============================= auth apis ================================== */
 
